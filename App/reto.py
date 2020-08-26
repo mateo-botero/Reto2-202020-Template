@@ -28,8 +28,8 @@ import sys
 import csv
 import config as cf
 
-from Lib.DataStructures import listiterator as it
-from Lib.ADT import list as lt
+from DISClib.DataStructures import listiterator as it
+from DISClib.ADT import list as lt
 
 
 def printMenu():
