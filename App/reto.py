@@ -1,6 +1,7 @@
 """
- * Copyright 2020, Departamento de sistemas y Computación, Universidad de Los Andes
- * 
+ * Copyright 2020, Departamento de sistemas y Computación
+ * Universidad de Los Andes
+ *
  *
  * Desarrolado para el curso ISIS1225 - Estructuras de Datos y Algoritmos
  *
@@ -18,18 +19,17 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
-
-"""
-  Este módulo es una aplicación básica con un menú de opciones para cargar datos, contar elementos, y hacer búsquedas sobre una lista .
-"""
-
-
 import sys
 import csv
 import config as cf
-
-from DISClib.DataStructures import listiterator as it
 from DISClib.ADT import list as lt
+assert cf
+
+
+"""
+  Este módulo es una aplicación básica con un menú de opciones para cargar
+  datos, contar elementos, y hacer búsquedas sobre una lista .
+"""
 
 
 def printMenu():
@@ -46,9 +46,7 @@ def printMenu():
     print("0- Salir")
 
 
-
-
-def compareRecordIds (recordA, recordB):
+def compareRecordIds(recordA, recordB):
     if int(recordA['id']) == int(recordB['id']):
         return 0
     elif int(recordA['id']) > int(recordB['id']):
@@ -56,63 +54,65 @@ def compareRecordIds (recordA, recordB):
     return -1
 
 
-
-def loadCSVFile (file, cmpfunction):
-    lst=lt.newList("ARRAY_LIST", cmpfunction)
+def loadCSVFile(file, cmpfunction):
+    lst = lt.newList("ARRAY_LIST", cmpfunction)
     dialect = csv.excel()
-    dialect.delimiter=";"
+    dialect.delimiter = ";"
     try:
-        with open(  cf.data_dir + file, encoding="utf-8") as csvfile:
+        with open(cf.data_dir + file, encoding="utf-8") as csvfile:
             row = csv.DictReader(csvfile, dialect=dialect)
-            for elemento in row: 
-                lt.addLast(lst,elemento)
-    except:
+            for elemento in row:
+                lt.addLast(lst, elemento)
+    except FileNotFoundError:
         print("Hubo un error con la carga del archivo")
     return lst
 
 
-def loadMovies ():
-    lst = loadCSVFile("theMoviesdb/movies-small.csv",compareRecordIds) 
+def loadMovies():
+    lst = loadCSVFile("theMoviesdb/movies-small.csv", compareRecordIds)
     print("Datos cargados, " + str(lt.size(lst)) + " elementos cargados")
     return lst
 
 
 def main():
     """
-    Método principal del programa, se encarga de manejar todos los metodos adicionales creados
+    Método principal del programa, se encarga de manejar todos
+    los metodos adicionales creados
 
-    Instancia una lista vacia en la cual se guardarán los datos cargados desde el archivo
+    Instancia una lista vacia en la cual se guardarán los datos cargados
+    desde el archivo
+
     Args: None
-    Return: None 
+    Return: None
     """
 
-
     while True:
-        printMenu() #imprimir el menu de opciones en consola
-        inputs =input('Seleccione una opción para continuar\n') #leer opción ingresada
-        if len(inputs)>0:
-
-            if int(inputs[0])==1: #opcion 1
+        printMenu()
+        inputs = input('Seleccione una opción para continuar\n')
+        if len(inputs) > 0:
+            """opcion 1"""
+            if int(inputs[0]) == 1:
                 lstmovies = loadMovies()
+                assert lstmovies
 
-            elif int(inputs[0])==2: #opcion 2
+            elif int(inputs[0]) == 2:
                 pass
 
-            elif int(inputs[0])==3: #opcion 3
+            elif int(inputs[0]) == 3:  # opcion 3
                 pass
 
-            elif int(inputs[0])==4: #opcion 4
+            elif int(inputs[0]) == 4:  # opcion 4
                 pass
 
-            elif int(inputs[0])==3: #opcion 5
+            elif int(inputs[0]) == 3:  # opcion 5
                 pass
 
-            elif int(inputs[0])==4: #opcion 6
+            elif int(inputs[0]) == 4:  # opcion 6
                 pass
 
-
-            elif int(inputs[0])==0: #opcion 0, salir
+            elif int(inputs[0]) == 0:  # opcion 0, salir
                 sys.exit(0)
-                
+
+
 if __name__ == "__main__":
     main()
