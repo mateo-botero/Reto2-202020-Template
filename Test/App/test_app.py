@@ -7,6 +7,6 @@ assert pytest
 assert config
 
 
-def test_loadMovies():
+def test_load_movies():
     lst = reto.loadMovies()
     assert lt.size(lst) == 2000
