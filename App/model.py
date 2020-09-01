@@ -62,11 +62,11 @@ def newCatalog():
                'Years': None}
 
     catalog['books'] = lt.newList('SINGLE_LINKED', compareBookIds)
-    catalog['bookIds'] = mp.newMap(500,
-                                   maptype='CHAINING',
+    catalog['bookIds'] = mp.newMap(200,
+                                   maptype='PROBING',
                                    comparefunction=compareMapBookIds)
-    catalog['authors'] = mp.newMap(500,
-                                   maptype='CHAINING',
+    catalog['authors'] = mp.newMap(200,
+                                   maptype='PROBING',
                                    comparefunction=compareAuthorsByName)
     catalog['tags'] = mp.newMap(1000,
                                 maptype='CHAINING',
