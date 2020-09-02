@@ -29,7 +29,7 @@ assert config
 
 """
 La vista se encarga de la interacción con el usuario.
-Presenta el menu de opciones  y  por cada seleccion
+Presenta el menu de opciones y por cada seleccion
 hace la solicitud al controlador para ejecutar la
 operación seleccionada.
 """

@@ -29,7 +29,7 @@ import csv
 El controlador se encarga de mediar entre la vista y el modelo.
 Existen algunas operaciones en las que se necesita invocar
 el modelo varias veces o integrar varias de las respuestas
-del modelo en una sola respuesta.  Esta responsabilidad
+del modelo en una sola respuesta. Esta responsabilidad
 recae sobre el controlador.
 """
 
