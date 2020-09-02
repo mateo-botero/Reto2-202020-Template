@@ -40,7 +40,7 @@ Este código está basado en las implementaciones propuestas en:
 """
 
 
-def newMap(numelements, prime, cmpfunction):
+def newMap(numelements, prime, loadfactor, cmpfunction):
     """Crea una tabla de simbolos (map) sin orden
 
     Crea una tabla de hash con capacidad igual a nuelements
@@ -51,13 +51,14 @@ def newMap(numelements, prime, cmpfunction):
     Args:
         numelements: Tamaño inicial de la tabla
         prime: Número primo utilizado en la función MAD
+        loadfactor: Factor de carga inicial de la tabla
         comparefunction: Funcion de comparación entre llaves
     Returns:
         Un nuevo map
     Raises:
         Exception
     """
-    capacity = nextPrime(numelements)
+    capacity = nextPrime(numelements//loadfactor)
     scale = rd.randint(1, prime-1) + 1
     shift = rd.randint(1, prime)
     table = lt.newList('ARRAY_LIST', cmpfunction)
@@ -287,7 +288,7 @@ def nextPrime(N):
     # Base case
     if (N <= 1):
         return 2
-    prime = N
+    prime = int(N)
     found = False
     # Loop continuously until isPrime returns
     # True for a number greater than n
@@ -295,4 +296,4 @@ def nextPrime(N):
         prime = prime + 1
         if(isPrime(prime) is True):
             found = True
-    return prime
+    return int(prime)
