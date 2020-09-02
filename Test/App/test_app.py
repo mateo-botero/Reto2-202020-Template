@@ -1,12 +1,40 @@
 
 import pytest
 import config
-from DISClib.ADT import list as lt
-from App import reto
+from App import controller as control
 assert pytest
 assert config
 
 
-def test_load_movies():
-    lst = reto.loadMovies()
-    assert lt.size(lst) == 2000
+@pytest.fixture
+def booksfile():
+    booksfile = 'GoodReads/books-small.csv'
+    return booksfile
+
+
+@pytest.fixture
+def tagsfile():
+    tagsfile = 'GoodReads/tags.csv'
+    return tagsfile
+
+
+@pytest.fixture
+def booktagsfile():
+    booktagsfile = 'GoodReads/book_tags-small.csv'
+    return booktagsfile
+
+
+@pytest.fixture
+def catalog():
+    """
+    Llama la funcion de inicializacion del catalogo del modelo.
+    """
+    # catalog es utilizado para interactuar con el modelo
+    catalog = control.initCatalog()
+    assert catalog is not None
+    return catalog
+
+
+def test_load_movies(catalog, booksfile, tagsfile, booktagsfile):
+    control.loadData(catalog, booksfile, tagsfile, booktagsfile)
+    assert control is not None
