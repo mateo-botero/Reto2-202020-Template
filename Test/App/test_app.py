@@ -2,6 +2,7 @@
 import pytest
 import config
 from App import controller as control
+from DISClib.ADT import list as lt
 assert pytest
 assert config
 
@@ -38,3 +39,7 @@ def catalog():
 def test_load_movies(catalog, booksfile, tagsfile, booktagsfile):
     control.loadData(catalog, booksfile, tagsfile, booktagsfile)
     assert control is not None
+    assert control.booksSize(catalog) == 149
+    assert control.tagsSize(catalog) == 34252
+    books = control.getBooksYear(catalog, 2008)
+    assert lt.size(books) == 4
