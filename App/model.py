@@ -20,6 +20,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  """
 import config
+import csv
 from DISClib.ADT import list as lt
 from DISClib.ADT import map as mp
 from DISClib.DataStructures import mapentry as me
@@ -34,21 +35,36 @@ es decir contiene los modelos con los datos en memoria
 # -----------------------------------------------------
 # API del TAD Catalogo de Libros
 # -----------------------------------------------------
-
+def nuevocatalogo(comparacionid):
+    lst=lt.newList("ARRAY_LIST", comparacionid)
+    return lst
 
 
 # Funciones para agregar informacion al catalogo
 
-
+def addLast(catalogo,pelicula):
+    lt.addLast(catalogo,pelicula)
 
 # ==============================
 # Funciones de consulta
 # ==============================
 
+def tamañopeliculas(catalogo):
+    return lt.size(catalogo)
 
+def primera_pelicula(catalogo):
+    return lt.firstElement(catalogo)
+
+def ultima_pelicula(catalogo):
+    return lt.lastElement(catalogo)
 
 # ==============================
 # Funciones de Comparacion
 # ==============================
 
-
+def comparacionid (recordA, recordB):
+    if int(recordA['id']) == int(recordB['id']):
+        return 0
+    elif int(recordA['id']) > int(recordB['id']):
+        return 1
+    return -1

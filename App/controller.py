@@ -23,6 +23,7 @@
 import config as cf
 from App import model
 import csv
+from DISClib.ADT import list as lt
 
 
 """
@@ -37,6 +38,14 @@ recae sobre el controlador.
 #  Inicializacion del catalogo
 # ___________________________________________________
 
+def cargar_peliculas():
+    """
+    Llama la funcion de inicializacion del catalogo del modelo.
+    """
+    # catalog es utilizado para interactuar con el modelo
+    listado = loadCSVFile("SmallMoviesDetailsCleaned.csv",comparacionid)
+    print("Datos cargados, " + str(lt.size(listado)) + " elementos cargados")
+    return listado
 
 
 
@@ -44,3 +53,26 @@ recae sobre el controlador.
 #  Funciones para la carga de datos y almacenamiento
 #  de datos en los modelos
 # ___________________________________________________
+def loadCSVFile (file,comparacionid):
+    catalogo=lt.newList(comparacionid)
+    dialect = csv.excel()
+    dialect.delimiter=";"
+    try:
+        with open(  cf.data_dir + file, encoding="utf-8") as csvfile:
+            row = csv.DictReader(csvfile, dialect=dialect)
+            for pelicula in row: 
+                model.addLast(catalogo,pelicula)
+    except:
+        print("Hubo un error con la carga del archivo")
+
+def tamañopeliculas(catalogo):
+    return model.tamañopeliculas(catalogo)
+
+def primera_pelicula(catalogo):
+    return model.primera_pelicula(catalogo)
+
+def ultima_pelicula(catalogo):
+    return model.ultima_pelicula(catalogo)
+
+def comparacionid (recordA, recordB):
+    return model.comparacionid(recordA,recordB)

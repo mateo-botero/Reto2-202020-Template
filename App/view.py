@@ -22,6 +22,7 @@
 
 import sys
 import config
+import csv
 from DISClib.ADT import list as lt
 from DISClib.DataStructures import listiterator as it
 from App import controller
@@ -53,3 +54,44 @@ operación seleccionada.
 # ___________________________________________________
 #  Menu principal
 # ___________________________________________________
+def printMenu():
+    print("Bienvenido")
+    print("1- Cargar listado de peliculas")
+    print("2- Cargar información en la lista")
+    print("3- Consulta de productora")
+    print("4- Consultar de director")
+    print("5- Consultar de actor")
+    print("6- Consultar por género")
+    print("7- Consultar por país")
+    print("0- Salir")
+
+
+
+while True:
+    printMenu()
+    inputs = input('Seleccione una opción para continuar\n')
+
+    if int(inputs[0]) == 1:
+        print("Cargando listado de peliculas....")
+        # cont es el controlador que se usará de acá en adelante
+        cont = controller.cargar_peliculas()
+        print("Peliculas cargadas: "+str(controller.tamañopeliculas(cont)))
+        print("Primera pelicual: ")
+        print("Titulo:" +str(controller.primera_pelicula(cont)["title"]))
+        print("Fecha de estreno: "+ str(controller.primera_pelicula(cont)["release_date"]))
+        print("Promedio de votacion: "+str(controller.primera_pelicula(cont)["vote_average"]))
+        print("Numero de votos: "+str(controller.primera_pelicula(cont)["vote_count"]))
+        print("Idioma: "+str(controller.primera_pelicula(cont)["original_language"]))
+        print("Ultima pelicual: ")
+        print("Titulo:" +str(controller.ultima_pelicula(cont)["title"]))
+        print("Fecha de estreno: "+ str(controller.ultima_pelicula(cont)["release_date"]))
+        print("Promedio de votacion: "+str(controller.ultima_pelicula(cont)["vote_average"]))
+        print("Numero de votos: "+str(controller.ultima_pelicula(cont)["vote_count"]))
+        print("Idioma: "+str(controller.ultima_pelicula(cont)["original_language"]))
+
+
+    else:
+        sys.exit(0)
+sys.exit(0)
+
+    
